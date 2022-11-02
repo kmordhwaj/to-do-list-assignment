@@ -17,12 +17,19 @@
   align-items: center;
 }
 
+.fab{
+  color: blueviolet;
+  right: 5px;
+}
+
 .categories{
   display: flex;
   align-items: center;
   justify-content: center;
   gap:10px;
   margin-bottom: 40px;
+  max-width: 550px ;
+  width: 100%;
 }
 
 .category{
@@ -30,4 +37,14 @@
   width: 80px;
   margin: 10px;
   cursor: pointer;
+}
+
+.concept{
+  display: flex;
+}
+
+@media screen and (max-width:540px){
+  .categories{
+    flex-direction: column;
+  }
 }
