@@ -1,4 +1,4 @@
-import React,{useState} from 'react'
+import React,{useState, useEffect} from 'react'
 import styled from 'styled-components';
 import { BrowserRouter, NavLink, Route, Routes } from 'react-router-dom';
 import { colors, GlobalStyle } from '../styles';
@@ -7,6 +7,7 @@ import useLocalStorage from '../hooks/use-local-storage';
 import { Task } from '../types';
 import ListScreen from './ListScreen';
 import FocusScreen from './FocusScreen';
+import axios from 'axios';
 
 const Layout = styled.div`
   align-items: center;
@@ -52,9 +53,10 @@ const Body = ({cat}) => {
    const [tasks, setTasks] = useLocalStorage<Task[]>('tasks', []);
 
    const [isList, setIsList] = useState(true);
+   var data = [];
 
-     // const fetchData = async () => {
-  //   const data = await axios.get('https://git.heroku.com/to-do-logical-loop.git/api/v1/tasks'); 
+  // const fetchData = async () => {
+  //    data = await axios.get(`https://git.heroku.com/to-do-logical-loop.git/api/v1/${cat}/tasks`); 
   //   console.log(data);
   // }
   
@@ -76,9 +78,9 @@ const Body = ({cat}) => {
               </TabButton>
         </Nav>
           {
-            isList ? <ListScreen /> : <FocusScreen />
+            isList ? <ListScreen /> : <FocusScreen/>
           }        
-    </TaskContext.Provider>  
+    </TaskContext.Provider> 
     </> 
   )
 }
