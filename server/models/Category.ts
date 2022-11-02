@@ -12,8 +12,7 @@ const CategorySchema = new mongooseC.Schema({
         type: String
       },
     image:{
-        type: String,
-        required:true
+        type: String
       },
 });
 

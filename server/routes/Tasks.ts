@@ -6,6 +6,7 @@ const Category = require("../models/Category.ts");
 const routerT = expressT.Router();
 
 // post a task (by async await method)
+// localhost:3300/api/v1/tasks
 routerT.post('/', async (req, res) => {
     const category = await Category.findById(req.body.category);
     if (!category){
@@ -29,6 +30,7 @@ routerT.post('/', async (req, res) => {
 });
 
 // update a task by id (by async await method)
+// localhost:3300/api/v1/tasks/fhvx7865e
 routerT.put('/:id', async (req, res) => {
     if (!mongooseT.isValidObjectId(req.params.id)){
         return res.status(400).send('Invalid task Id');
@@ -56,6 +58,7 @@ routerT.put('/:id', async (req, res) => {
 });
 
 // deleting a task (by promise method)
+// localhost:3300/api/v1/tasks/hjkgbmkgh
 routerT.delete('/:id', (req, res) => {
     Task.findByIdAndRemove(req.params.id).then((task) =>{
         if (task){
@@ -69,6 +72,7 @@ routerT.delete('/:id', (req, res) => {
 });
 
 // get all task (for user)
+// localhost:3300/api/v1/tasks
 routerT.get('/', async (req, res) => {
     const taskList = await Task.find()
    // .select('name image -_id')    // to display only these things from all list
@@ -84,6 +88,7 @@ routerT.get('/', async (req, res) => {
 });
 
 // get a task by id (by async await method)
+// localhost:3300/api/v1/tasks/gjty5ygchjh
 routerT.get('/:id', async (req, res) => {
     const task = await Task.findById(req.params.id);
    
@@ -95,6 +100,7 @@ routerT.get('/:id', async (req, res) => {
 });
 
 // admin want to know how many task he had listed (to modify later)
+// localhost:3300/api/v1/tasks/get/count
 routerT.get('/get/count', async (req, res) => {
     const taskCount = await Task.countDocuments((count) => count);
    
@@ -108,6 +114,7 @@ routerT.get('/get/count', async (req, res) => {
 });
 
 // featured tasks
+// localhost:3300/api/v1/tasks/get/featured
 routerT.get('/get/featured', async (req, res) => {
     const tasks = await Task.find({featured:true});
    
@@ -119,6 +126,7 @@ routerT.get('/get/featured', async (req, res) => {
 });
 
 // featured tasks (show 'count' numbers of tasks only ) (user give some input)
+// localhost:3300/api/v1/tasks/get/featured/:count
 routerT.get('/get/featured/:count', async (req, res) => {
     const count = req.params.count ? req.params.count : 0 ;
     const tasks = await Task.find({featured:true}).limit(+count) ;  // here count is string and limit

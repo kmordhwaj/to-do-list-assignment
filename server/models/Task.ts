@@ -7,7 +7,6 @@ const TaskSchema = new mongooseTm.Schema({
   },
   description:{
     type: String,
-    required:true
   },
   image:{
     type: String,
