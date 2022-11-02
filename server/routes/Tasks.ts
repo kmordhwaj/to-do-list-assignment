@@ -15,15 +15,8 @@ routerT.post('/', async (req, res) => {
     let task = new Task({
         name:req.body.name,
         description:req.body.description,
-        richDescription:req.body.richDescription,
         image:req.body.image,
-        brand:req.body.brand,
-        price:req.body.price,
-        category:req.body.category,
-        countInStock:req.body.countInStock,
-        rating:req.body.rating,
-        numReviews:req.body.numReviews,
-        isFeatured:req.body.isFeatured,
+        category:req.body.category
     });
 
     task = await task.save();
@@ -47,17 +40,10 @@ routerT.put('/:id', async (req, res) => {
 
     const task = await Task.findByIdAndUpdate(req.params.id, 
         {
-            name:req.body.name,
-            description:req.body.description,
-            richDescription:req.body.richDescription,
-            image:req.body.image,
-            brand:req.body.brand,
-            price:req.body.price,
-            category:req.body.category,
-            countInStock:req.body.countInStock,
-            rating:req.body.rating,
-            numReviews:req.body.numReviews,
-            isFeatured:req.body.isFeatured,
+        name:req.body.name,
+        description:req.body.description,
+        image:req.body.image,
+        category:req.body.category
         },
         {new:true}
         );
